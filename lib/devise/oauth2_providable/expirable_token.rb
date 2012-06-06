@@ -11,7 +11,7 @@ module Devise
           cattr_accessor :default_lifetime
           self.default_lifetime = Rails.application.config.devise_oauth2_providable[config_name]
 
-          belongs_to :user
+          belongs_to :user, :polymorphic => true
           belongs_to :client
 
           after_initialize :init_token, :on => :create, :unless => :token?

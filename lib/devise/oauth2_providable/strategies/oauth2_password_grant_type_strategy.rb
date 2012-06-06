@@ -8,6 +8,8 @@ module Devise
       end
 
       def authenticate_grant_type(client)
+        puts 'here'
+        puts params
         resource = mapping.to.find_for_authentication(mapping.to.authentication_keys.first => params[:username])
         if validate(resource) { resource.valid_password?(params[:password]) }
           success! resource
