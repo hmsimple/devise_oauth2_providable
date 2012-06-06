@@ -13,7 +13,8 @@ class CreateDeviseOauth2ProvidableSchema < ActiveRecord::Migration
     end
 
     create_table :oauth2_access_tokens do |t|
-      t.belongs_to :user, :client, :refresh_token
+      t.belongs_to :client, :refresh_token
+      t.references :user, :polymorphic => true
       t.string :token
       t.datetime :expires_at
       t.timestamps
@@ -26,7 +27,8 @@ class CreateDeviseOauth2ProvidableSchema < ActiveRecord::Migration
     end
 
     create_table :oauth2_refresh_tokens do |t|
-      t.belongs_to :user, :client
+      t.belongs_to :client
+      t.references :user, :polymorphic => true
       t.string :token
       t.datetime :expires_at
       t.timestamps
@@ -39,7 +41,8 @@ class CreateDeviseOauth2ProvidableSchema < ActiveRecord::Migration
     end
 
     create_table :oauth2_authorization_codes do |t|
-      t.belongs_to :user, :client
+      t.belongs_to :client
+      t.references :user, :polymorphic => true
       t.string :token
       t.datetime :expires_at
       t.timestamps
