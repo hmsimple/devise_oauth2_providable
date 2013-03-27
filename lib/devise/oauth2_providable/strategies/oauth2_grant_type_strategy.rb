@@ -7,6 +7,11 @@ module Devise
         params[:grant_type] == grant_type && request.post? && params[:controller].include?('tokens')
       end
 
+      # Prevent creating of session in devise
+      def store?
+        false
+      end
+
       # defined by subclass
       def grant_type
       end
