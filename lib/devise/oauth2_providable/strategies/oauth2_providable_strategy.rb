@@ -7,6 +7,9 @@ module Devise
         @req = Rack::OAuth2::Server::Resource::Bearer::Request.new(env)
         @req.oauth2?
       end
+      def store?
+        false
+      end
       def authenticate!
         @req.setup!
         token = Devise::Oauth2Providable::AccessToken.find_by_token @req.access_token
